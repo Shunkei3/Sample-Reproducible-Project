@@ -1,62 +1,47 @@
 ---
 title: The Impact of Weather on Flight Delay
-format: 
-  pdf:
-    toc: false
-    number-sections: true
-    number-depth: 2
-    colorlinks: true
-    keep-tex: true
-    fontfamily: times
-    fig-cap-location: bottom
-    fig-align: center
-    tbl-cap-location: top
-    link-citations: true
-    citecolor: red
-    link-bibliography: true
-    reference-location: document
-    include-in-header:
-      - preamble.tex
-    template-partials: 
-      - title.tex
 author:
-  - name: Forgot MyName
+  - name: MyName
     email: johndoe@corps.com
     affiliations:
       - Random University
   - name: No Name
     affiliations:
       - Highest-ranked University
-keywords:
-  - Reproducible
-  - R
 date: "`r Sys.Date()`"
 abstract: |
-  Abstract: this research is so awesome that you cannot reject this paper.
-keypoints:
-  - qmd to pdf is pretty straightforward
-  - no more key points
+  This is a sample article for illustrating how to write a reproducible research article using R and Quarto. `preamble.tex` is used to set up the LaTeX environment, such as packages and custom commands. `title.tex` (in the template folder) is used to customize the title page. `american-journal-of-agricultural-economics.csl` is the citation style for AJAE. It can be downloaded from https://github.com/citation-style-language/styles. The `template` folder contains these three files. `bibliography.bib` is the bibliography file
 bibliography: bibliography.bib
-csl: qje.csl
-# csl: pnas.csl
+csl: ./template/american-journal-of-agricultural-economics.csl 
+
+format: 
+  pdf:
+    number-sections: true
+    keep-tex: false # set to true if you want to keep the intermediate .tex file
+    fontfamily: times
+    tbl-cap-location: top
+    include-in-header: 
+      - ./template/preamble.tex # preamble.tex is used to set up the LaTeX environment, such as packages and custom commands
+    template-partials: 
+      - ./template/title.tex # title.tex is used to customize the title page
+
+execute: 
+  echo: false
+  message: false
+  warning: false
 ---
 
 
 ```{r}
+#| label: setup
 #| include: FALSE
-#--- packages ---#
-library(flextable)
-library(officer)
-library(modelsummary)
-library(tidyverse)
 
-#--- chunk options ---#
-knitr::opts_chunk$set(
-  echo = FALSE,
-  error = TRUE,
-  messages = FALSE,
-  warnings = FALSE
-)
+# --- load packages --- #
+pacman::p_load(officer, modelsummary, data.table, dplyr, ggplot2)
+
+# --- prepare results --- #
+# You can directly load the R objects created in a different qmd file using the following code. Then, you can use the loaded objects (data, figure, table, etc.) in the current qmd file.
+# knitr::knit_child("../code/2_make_tables_figures.qmd", quiet = TRUE)
 ```
 
 
@@ -68,10 +53,10 @@ Nothing is more frustrating than flight delays. The goal of this article is to u
 
 # Method
 
-Regression analysis was used in this article. The econometric model writes as follows (equation \ref{econometric-model})):
+Regression analysis was used in this article. The econometric model writes as follows (Equation \ref{econometric-model}):
 
 \begin{align}
-y_{i,t} = \beta_0 + \beta_1 temp_{i,t} + \beta_2 precip_{i,t} + \beta_3 wind_speed_{i,t} + v_{i,t} \lable{econometric-model}
+y_{i,t} = \beta_0 + \beta_1 temp_{i,t} + \beta_2 precip_{i,t} + \beta_3 wind_speed_{i,t} + v_{i,t} \label{econometric-model}
 \end{align}
 
 ## Code availability
@@ -83,20 +68,27 @@ All computations (including creating tables and plots) were conducted using R so
 We use publicly available datasets from the R `nycflights13` package [@nycflights13]. @tbl-sum-stat presents the summary statistics.
 
 ```{r}
-#| lable: tbl-sum-stat
+#| label: tbl-sum-stat
 #| tbl-cap: Summary Statistics
-library(modelsummary)
-reg_data <- readRDS(here::here("data/processed/reg_data.rds"))
-modelsummary::datasummary(dep_delay + temp + precip + wind_speed ~ Mean + SD + Max, data = reg_data)
+
+reg_data <- readRDS("../data/processed/reg_data.rds")
+# Or, you can also use the following code to read the data, which is more robust to changes in the working directory.
+# reg_data <- readRDS(here::here("data/processed/reg_data.rds"))
+
+
+datasummary(
+  dep_delay + temp + precip + wind_speed ~ Mean + SD + Max, 
+  data = reg_data
+)
 ```
 
-Figure @fig-hist-delay shows the histogram of departure delay by carrier for each of the airports. 
+@fig-hist-delay shows the histogram of departure delay by carrier for each of the airports. 
 
 ```{r}
-#| lable: fig-hist-delay
+#| label: fig-hist-delay
 #| fig-cap: Distribution of delay by carrier
 
-knitr::include_graphics(here::here("results/figures/delay_box.pdf"))
+knitr::include_graphics("../results/figures/delay_box.pdf")
 ```
 
 # Results and Discussions
@@ -104,21 +96,33 @@ knitr::include_graphics(here::here("results/figures/delay_box.pdf"))
 @tbl-reg-results presents the regression results.
 
 ```{r}
-#| lable: tbl-reg-results
+#| label: tbl-reg-results
 #| tbl-cap: Regression Results
+
+# --- load a list of regression results --- #
+ls_reg_results <- readRDS("../results/reg_results.rds")
+
+# --- create regression results table --- #
 reg_table <-
-  readRDS(here::here("results/reg_results.rds")) %>%
   modelsummary(
+    models = ls_reg_results, 
+    coef_map = c(
+      "temp" = "Temperature",
+      "precip" = "Precipitation",
+      "wind_speed" = "Wind Speed"
+    ),
     stars = TRUE,
-    outpuy = "flextable",
     gof_omit = "IC|Log|Adj|F|Pseudo|Within|RMSE"
   )
+
 reg_table
 ```
 
 # Conclusion
 
 Weather matters.
+
+\newpage
 
 # References {-}
 

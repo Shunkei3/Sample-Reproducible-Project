@@ -1,0 +1,13 @@
+# Objective
+
+# Implement the project
+
+The following codes run all the core codes to complete a project(data processing, analysis, creating presentable outputs, and producing a manuscript). 
+
+```{r}
+source("code/main/0_process_data.R")
+source("code/main/1_reg_analysis.R")
+source("code/main/2_make_tables_figures.R")
+rmarkdown::render("writing/manuscript_to_word.rmd")
+```
+

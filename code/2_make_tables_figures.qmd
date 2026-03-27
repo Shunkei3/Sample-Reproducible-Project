@@ -1,0 +1,65 @@
+# Objective
+
+Create figures and tables for publication.
+
+# Preparation
+
+```{r}
+pacman::p_load(ggplot2, modelsummary, ggtext, data.table, dplyr)
+```
+
+# Make figures and tables
+
+## Visual illustration of the data
+```{r}
+#--- read the data ---#
+reg_data <- readRDS("data/processed/reg_data.rds")
+
+g_delay <-
+  ggplot(reg_data) +
+  geom_boxplot(aes(x = carrier, y = dep_delay)) +
+  facet_grid(origin ~ .) +
+  theme_bw() +
+  labs(
+    x = "Carrier",
+    y = "Departure Delay",
+    caption = "Note: The figure shows the distribution of departure delay by carrier for each of the airports."
+  ) +
+  theme(
+    plot.caption = element_textbox_simple(
+      hjust=0, size = 10, 
+      margin = margin(t = 10)
+    ),
+    text = element_text(family = "Times")
+  )
+
+#--- for WORD ---#
+ggsave("results/figures/delay_box.png", g_delay, dpi = 600, width = 6, height = 5)
+
+#--- for PDF ---#
+ggsave("results/figures/delay_box.pdf", g_delay, width = 6, height = 5)
+```
+
+## Regression table
+
+```{r}
+# --- load a list of regression results --- #
+ls_reg_results <- readRDS("results/reg_results.rds")
+
+# --- create regression results table --- #
+reg_table <-
+  modelsummary(
+    models = ls_reg_results, 
+    coef_map = c(
+      "temp" = "Temperature",
+      "precip" = "Precipitation",
+      "wind_speed" = "Wind Speed"
+    ),
+    stars = TRUE,
+    gof_omit = "IC|Log|Adj|F|Pseudo|Within|RMSE"
+  )
+
+# --- for PDF --- #
+saveRDS(reg_table, "results/tables/reg_table.rds")
+
+```
