@@ -5,22 +5,23 @@ Read raw datasets and process them for analysis.
 # Preparation
 
 ```{r}
+#| label: setup
+
 #--- packages ---#
-pacman::p_load(rio, dplyr, data.table) #p_load() of pacman package is used to load multiple packages at once. If a package is not installed, it will be installed first and then loaded.
+library(rio)
+library(dplyr)
+library(data.table)
+library(here)
 ```
 
 # Process datasets
 
 ```{r}
-#--- read datasets ---#
-# The working directory is set to the root project folder
-flights <- import("data/raw/flights.csv", setclass = "data.table")
-weather <- import("data/raw/weather.csv", setclass = "data.table")
+#| label: process-data
 
-#--- transform datasets ---#
-flights_avg <-
-  flights %>%
-  select(year, month, day, dep_delay, carrier, origin)
+#--- read datasets ---#
+flights <- import(here("data/raw/flights.csv"), setclass = "data.table")
+weather <- import(here("data/raw/weather.csv"), setclass = "data.table")
 
 #--- aggregate weather data from hourly to daily  ---#
 weather_daily <-
@@ -33,8 +34,8 @@ weather_daily <-
   ]
 
 #--- merge datasets ---#
-reg_data <- merge(flights_avg, weather_daily, by = c("month", "day", "origin"), all.x = TRUE)
+reg_data <- merge(flights, weather_daily, by = c("month", "day", "origin"), all.x = TRUE)
 
 #--- save the data ---#
-saveRDS(reg_data, "data/processed/reg_data.rds")
+saveRDS(reg_data, here("data/processed/reg_data.rds"))
 ```

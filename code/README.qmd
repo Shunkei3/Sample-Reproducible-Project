@@ -1,0 +1,53 @@
+# Objective
+
+This document explains how to reproduce all main outputs of the project, including data preparation, empirical analysis, tables, figures, and the final manuscript.
+
+# Before you start
+
+To reproduce this project, you need:
+
+- R
+- Quarto
+- the `renv` package
+- all project files in their original folder structure
+
+The following R packages are required to run the code in this project. Run the code below to install them if you haven't already.
+
+```{r}
+#| eval: FALSE
+
+if(!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  here,
+  rio,
+  quarto,
+  data.table,
+  dplyr,
+  ggplot2,
+  ggtext,
+  flextable,
+  modelsummary
+)
+```
+
+
+# Implement the project
+
+The following code runs the full workflow for this project:
+
+1. Process the raw data (code/0_process_data.qmd)
+2. Run the regression analysis (code/1_reg_analysis.qmd)
+3. Create tables and figures (code/2_make_tables_figures.qmd)
+4. Render the manuscript (writing/manuscript_to_word.qmd and writing/writing_to_pdf.qmd)
+
+```{r}
+quarto::quarto_render(here::here("code/0_process_data.qmd"))
+
+quarto::quarto_render(here::here("code/1_reg_analysis.qmd"))
+
+quarto::quarto_render(here::here("code/2_make_tables_figures.qmd"))
+
+quarto::quarto_render(here("writing/manuscript_to_word.qmd"))
+```
+

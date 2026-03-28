@@ -5,8 +5,10 @@ Run regression analyses and save the results.
 # Prepare
 
 ```{r}
+#| label: setup
+
 #--- packages ---#
-pacman::p_load(fixest)
+library(fixest)
 ```
 
 # Regression analysis
@@ -14,13 +16,17 @@ pacman::p_load(fixest)
 First, load the analysis-ready data.
 
 ```{r}
+#| label: prep-reg-data
+
 #--- load the data for regression ---#
-reg_data <- readRDS("data/processed/reg_data.rds")
+reg_data <- readRDS(here::here("data/processed/reg_data.rds"))
 ```
 
 Run regression analysis with three different models.
 
 ```{r}
+#| label: reg-analysis
+
 #--- regression analysis ---#
 reg_results_1 <- feols(dep_delay ~ temp + precip + wind_speed, data = reg_data)
 
@@ -32,9 +38,11 @@ reg_results_3 <- feols(dep_delay ~ temp + precip + wind_speed | month + origin, 
 Combine the results and save.
 
 ```{r}
+#| label: save-reg-results
+
 #--- combine ---#
 reg_list <- list(reg_results_1, reg_results_2, reg_results_3)
 
 #--- save ---#
-saveRDS(reg_list, "results/reg_results.rds")
+saveRDS(reg_list, here::here("results/reg_results.rds"))
 ```

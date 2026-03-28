@@ -5,15 +5,24 @@ Create figures and tables for publication.
 # Preparation
 
 ```{r}
-pacman::p_load(ggplot2, modelsummary, ggtext, data.table, dplyr)
+#| label: setup
+library(ggplot2)
+library(flextable)
+library(modelsummary)
+library(ggtext)
+library(data.table)
+library(dplyr)
+library(here)
 ```
 
 # Make figures and tables
 
 ## Visual illustration of the data
 ```{r}
+#| label: prep-fig-data
+
 #--- read the data ---#
-reg_data <- readRDS("data/processed/reg_data.rds")
+reg_data <- readRDS(here("data/processed/reg_data.rds"))
 
 g_delay <-
   ggplot(reg_data) +
@@ -34,17 +43,19 @@ g_delay <-
   )
 
 #--- for WORD ---#
-ggsave("results/figures/delay_box.png", g_delay, dpi = 600, width = 6, height = 5)
+ggsave(here("results/figures/delay_box.png"), g_delay, dpi = 600, width = 6, height = 5)
 
 #--- for PDF ---#
-ggsave("results/figures/delay_box.pdf", g_delay, width = 6, height = 5)
+ggsave(here("results/figures/delay_box.pdf"), g_delay, width = 6, height = 5)
 ```
 
 ## Regression table
 
 ```{r}
+#| label: prep-reg-table
+
 # --- load a list of regression results --- #
-ls_reg_results <- readRDS("results/reg_results.rds")
+ls_reg_results <- readRDS(here("results/reg_results.rds"))
 
 # --- create regression results table --- #
 reg_table <-
@@ -60,6 +71,6 @@ reg_table <-
   )
 
 # --- for PDF --- #
-saveRDS(reg_table, "results/tables/reg_table.rds")
+saveRDS(reg_table, here("results/tables/reg_table.rds"))
 
 ```
