@@ -13,6 +13,7 @@ All results in the manuscript are generated through a reproducible workflow impl
 
 The main structure of the project is as follows:
 
+```
 Sample-Reproducible-Project/
 ├─ code/ # Scripts for data processing, analysis, and figure generation
 ├─ data/ 
@@ -24,7 +25,7 @@ Sample-Reproducible-Project/
 ├─ writing/ # Manuscript and supplementary materials
 ├─ README.md
 ├─ Sample-Reproducible-Project.Rproj
-
+```
 
 Data folder is available from the [xxxx]() repository. Download the data and place it in the correct folder structure as shown above.
 
