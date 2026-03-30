@@ -1,6 +1,6 @@
 # Sample Reproducible Project
 
-*(This repository provides a minimal example of a **reproducible research project**.  It demonstrates how to organize files, structure workflows, and document analysis so that results can be fully reproduced from raw data. The project is designed for teaching and demonstration purposes. This README file provides a template of the README.md file that should be included in a Github repository for a reproducible research project.)*
+*(comment: This repository provides a minimal example of a **reproducible research project**.  It demonstrates how to organize files, structure workflows, and document analysis so that results can be fully reproduced from raw data. The project is designed for teaching and demonstration purposes. This README file provides a template of the README.md file that should be included in a Github repository for a reproducible research project.)*
 
 
 # Overview
@@ -15,14 +15,14 @@ The main structure of the project is as follows:
 
 ```
 Sample-Reproducible-Project/
-├─ code/ # Scripts for data processing, analysis, and figure generation
+├─ code/          # Scripts for data processing, analysis, and figure generation
 ├─ data/ 
 │  ├─ raw/        # Original, unmodified data
 │  ├─ processsed/ # Cleaned and processed data used for analysis
 ├─ results/
-│  ├─ figures/ # Generated figures
-│  ├─ tables/  # Generated tables 
-├─ writing/ # Manuscript and supplementary materials
+│  ├─ figures/    # Generated figures
+│  ├─ tables/     # Generated tables 
+├─ writing/       # Manuscript and supplementary materials
 ├─ README.md
 ├─ Sample-Reproducible-Project.Rproj
 ```
@@ -68,5 +68,8 @@ step 4. To generate the manuscript, render the `writing/manuscript_to_pdf.qmd` f
 
 
 ## Further Information
+
+*(comment: I avoided describing the details of each script and dataset in the README file to keep it concise and focused on providing an overview of the project and instructions for reproduction. Instead, I provided separate files dedicated to describing the code and data.)*
+
 + `code/main.qmd` contains the description of each script
 + `data/metadata.md` contains the description of the data source and variable definitions.
