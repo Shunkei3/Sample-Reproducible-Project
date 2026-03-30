@@ -27,7 +27,7 @@ Sample-Reproducible-Project/
 ├─ Sample-Reproducible-Project.Rproj
 ```
 
-Data folder is available from the [xxxx]() repository. Download the data and place it in the correct folder structure as shown above.
+Data folder is available from the [xxxx]() data repository. Download the data and place it in the correct folder structure as shown above.
 
 
 # Reproducibility
@@ -38,6 +38,7 @@ Data folder is available from the [xxxx]() repository. Download the data and pla
 + Required R packages:
 
 ```{r}
+# Run the R code below:
 if(!require("pacman")) install.packages("pacman")
 
 pacman::p_load(
