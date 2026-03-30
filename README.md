@@ -27,7 +27,7 @@ Sample-Reproducible-Project/
 ├─ Sample-Reproducible-Project.Rproj
 ```
 
-Data folder is available from the [xxxx]() data repository. Download the data and place it in the correct folder structure as shown above.
+Data folder is available from the [xxxx]() data repository. Download the data folder and place it in the correct folder structure (directly under `Sample-Reproducible-Project` folder) as shown above.
 
 
 # Reproducibility
