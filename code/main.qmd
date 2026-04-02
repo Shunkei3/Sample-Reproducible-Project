@@ -50,7 +50,7 @@ quarto_render(here("code/1_reg_analysis.qmd"))
 
 quarto_render(here("code/2_make_tables_figures.qmd"))
 
-quarto_render(here("writing/manuscript_to_word.qmd"))
+quarto_render(here("writing/manuscript_to_pdf.qmd"))
 ```
 
 In addition, each `.qmd` file produces an `.html` output, which serves as an easily readable record of the process and results.
