@@ -61,10 +61,10 @@ pacman::p_load(
 **Step 1.** Clone the repository to your local machine.
 
 + Copy the URL of this repository: https://github.com/Shunkei3/Sample-Reproducible-Project.git
-+ Rstudio: File > New Project > Version Control > Git > paste the URL of the repository
-+ VScode: View > Command Palette > Git: Clone > paste the URL of the repository
++ Rstudio user: File > New Project > Version Control > Git > paste the URL of the repository
++ VScode user: View > Command Palette > Git: Clone > paste the URL of the repository
 
-**Step 2.** Open the `Sample-Reproducible-Project.Rproj` file in RStudio (or set the working directory to the project folder on your other IDE).
+**Step 2.** Open the `Sample-Reproducible-Project.Rproj` file in RStudio (or set the working directory to the project folder on your other IDE such as VScode). This will ensure that all file paths are correctly set relative to the project directory.
 
 **Step 3.** Follow the instructions in `code/main.qmd` to run the scripts in the correct order. Each script is designed to be run sequentially, and they will generate the results in the `results/` folder.
 
