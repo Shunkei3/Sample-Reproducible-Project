@@ -58,13 +58,17 @@ pacman::p_load(
 
 ## Steps to Reproduce Results
 
-step 1. Clone the repository to your local machine.
+**Step 1.** Clone the repository to your local machine.
 
-step 2. Open the `Sample-Reproducible-Project.Rproj` file in RStudio (or set the working directory to the project folder on your other IDE).
++ Copy the URL of this repository: https://github.com/Shunkei3/Sample-Reproducible-Project.git
++ Rstudio: File > New Project > Version Control > Git > paste the URL of the repository
++ VScode: View > Command Palette > Git: Clone > paste the URL of the repository
 
-step 3. Follow the instructions in `code/main.qmd` to run the scripts in the correct order. Each script is designed to be run sequentially, and they will generate the results in the `results/` folder.
+**Step 2.** Open the `Sample-Reproducible-Project.Rproj` file in RStudio (or set the working directory to the project folder on your other IDE).
 
-step 4. To generate the manuscript, render the `writing/manuscript_to_pdf.qmd` file. This will create a PDF version of the manuscript in the `writing/` folder.
+**Step 3.** Follow the instructions in `code/main.qmd` to run the scripts in the correct order. Each script is designed to be run sequentially, and they will generate the results in the `results/` folder.
+
+**Step 4.** To generate the manuscript, render the `writing/manuscript_to_pdf.qmd` file. This will create a PDF version of the manuscript in the `writing/` folder.
 
 
 
