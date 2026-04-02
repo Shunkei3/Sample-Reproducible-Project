@@ -31,12 +31,12 @@ Sample-Reproducible-Project/
 Data folder is available from the [xxxx]() data repository. Download the data folder and place it in the correct folder structure (directly under `Sample-Reproducible-Project` folder) as shown above.
 
 
-# Reproducibility
+# How to Reproduce the Project
 
 ## Requirements
 + R (version 4.0 or higher)
 + Quarto
-+ Required R packages:
++ Required R packages are listed in the below. You can install them using the `pacman` package, which will automatically install any missing packages.
 
 ```{r}
 # Run the R code below:
