@@ -1,6 +1,6 @@
 # Sample Reproducible Project
 
-> NOTE: This is a sample project for demonstration purposes. The data and code are not intended for actual research use.
+> NOTE: > NOTE: This sample project was created for the Reproducibility Workshop at the APEC Student Seminar for demonstration purposes. The data and code are not intended for actual research use.
 
 > NOTE: This repository provides a minimal example of a **reproducible research project**.  It demonstrates how to organize files, structure workflows, and document analysis so that results can be fully reproduced from raw data. The project is designed for teaching and demonstration purposes. **This README file provides a template of the README.md file that should be included in a Github repository for a reproducible research project**.
 
