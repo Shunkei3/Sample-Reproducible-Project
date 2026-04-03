@@ -1,8 +1,10 @@
 # Sample Reproducible Project
 
-*(COMMENT: This repository provides a minimal example of a **reproducible research project**.  It demonstrates how to organize files, structure workflows, and document analysis so that results can be fully reproduced from raw data. The project is designed for teaching and demonstration purposes. **This README file provides a template of the README.md file that should be included in a Github repository for a reproducible research project**.)*
+> NOTE: This is a sample project for demonstration purposes. The data and code are not intended for actual research use.
 
-*(NOTE: This material is based on the github repository of Prof. Taro Mieno ([here](https://github.com/tmieno2/Sample-Reproducible-Project)), which is created to demonstrate the principles of reproducibility in scientific research in his course. I modified the original material to fit the purpose of this workshop, but the core structure and content are based on his work.)*
+> NOTE: This repository provides a minimal example of a **reproducible research project**.  It demonstrates how to organize files, structure workflows, and document analysis so that results can be fully reproduced from raw data. The project is designed for teaching and demonstration purposes. **This README file provides a template of the README.md file that should be included in a Github repository for a reproducible research project**.
+
+> NOTE: This material is based on the github repository of Prof. Taro Mieno ([click here for the original repository](https://github.com/tmieno2/Sample-Reproducible-Project)), which is created to demonstrate the principles of reproducibility in scientific research in his course. I modified the original material to fit the purpose of this workshop, but the core structure and content are based on his work.
 
 # Overview
 
@@ -19,7 +21,7 @@ Sample-Reproducible-Project/
 ├─ code/          # Scripts for data processing, analysis, and figure generation
 ├─ data/ 
 │  ├─ raw/        # Original, unmodified data
-│  ├─ processsed/ # Cleaned and processed data used for analysis
+│  ├─ processed/  # Cleaned and processed data used for analysis
 ├─ results/
 │  ├─ figures/    # Generated figures
 │  ├─ tables/     # Generated tables 
@@ -28,14 +30,14 @@ Sample-Reproducible-Project/
 ├─ Sample-Reproducible-Project.Rproj
 ```
 
-Data folder is available from the [xxxx]() data repository. Download the data folder and place it in the correct folder structure (directly under `Sample-Reproducible-Project` folder) as shown above.
+<!-- Data folder is available from the [xxxx]() data repository. Download the data folder and place it in the correct folder structure (directly under `Sample-Reproducible-Project` folder) as shown above. -->
 
 
 # How to Reproduce the Project
 
 ## Requirements
 + R (version 4.0 or higher)
-+ Quarto
++ Quarto CLI (https://quarto.org/docs/get-started/)
 + Required R packages are listed in the below. You can install them using the `pacman` package, which will automatically install any missing packages.
 
 ```{r}
@@ -69,7 +71,6 @@ pacman::p_load(
 **Step 3.** Follow the instructions in `code/main.qmd` to run the scripts in the correct order. Each script is designed to be run sequentially, and they will generate the results in the `results/` folder.
 
 **Step 4.** To generate the manuscript, render the `writing/manuscript_to_pdf.qmd` file. This will create a PDF version of the manuscript in the `writing/` folder.
-
 
 
 ## Further Information
